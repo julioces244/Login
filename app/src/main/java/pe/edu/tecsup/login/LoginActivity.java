@@ -1,14 +1,15 @@
 package pe.edu.tecsup.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import pe.edu.tecsup.login.Interface.ApiService;
+import pe.edu.tecsup.login.Interface.ApiServiceGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,11 +19,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText user;
     private EditText pass;
-
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         user = (EditText)findViewById(R.id.userLogin);
         pass = (EditText)findViewById(R.id.passwordLogin);
@@ -36,7 +38,17 @@ public class LoginActivity extends AppCompatActivity {
 
     public void card(View view) {
 
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
+
         final String username = user.getText().toString();
+
+        final String idusuario = user.getText().toString();
         String password = pass.getText().toString();
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -65,9 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                         // Log.d(TAG, "responseMessage: " + responseMessage);
                         //msg.setText("Already register!");
                         //Toast.makeText(LoginActivity.this, responseMessage.getMessage(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("username", username);
                         startActivity(intent);
+                        progressDialog.dismiss();
                         finish();
 
                     } else {

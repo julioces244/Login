@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_maincity3" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="MANKOA"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="120dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/gesture"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 1. Swipe right/left to open menu"
+            android:id="@+id/textView" android:layout_gravity="center" android:clickable="false"
+            android:textColor="#ffacacac" android:textSize="17sp" android:padding="5dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_selector"
+            android:textColor="@android:color/white"
+            android:text="2. Click me to open menu"
+            android:textSize="17sp"
+            android:padding="12dp"
+            android:id="@+id/btn_open_menu"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
