@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     public void card(View view) {
 
         final String username = user.getText().toString();
+
+        final String idusuario = user.getText().toString();
         String password = pass.getText().toString();
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -65,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Log.d(TAG, "responseMessage: " + responseMessage);
                         //msg.setText("Already register!");
                         //Toast.makeText(LoginActivity.this, responseMessage.getMessage(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("username", username);
                         startActivity(intent);
                         finish();
