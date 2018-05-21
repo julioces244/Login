@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mankoa</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="_123_456_7890">(123) 456-7890</string>
+
+    <string-array name="tipo_pago">
+        <item>Diario</item>
+        <item>Semanal</item>
+        <item>Mensual</item>
+    </string-array>
+    <string name="title_activity_all_maps">Map</string>
+    <string name="title_activity_maps_all">Map</string>
+    <string name="title_activity_maps2">Map</string>
+
+</resources>
