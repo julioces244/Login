@@ -1,9 +1,11 @@
 package pe.edu.tecsup.login.Interface;
 
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import pe.edu.tecsup.login.Class.Historial;
 import pe.edu.tecsup.login.Class.Inmueble;
 import pe.edu.tecsup.login.Class.Usuario;
 import pe.edu.tecsup.login.Coordenada;
@@ -103,6 +105,16 @@ public interface ApiService {
     @GET("api/v1/misinmuebles/{usuarios_idusuarios}")
     Call<List<Inmueble>> showMyInmueble(@Path("usuarios_idusuarios") Integer usuarios_idusuarios);
 
+    @FormUrlEncoded
+    @POST("/api/v1/historiales")
+    Call<ResponseMessage> createHistorial(@Field("usuarios_idusuarios") int usuarios_idusuarios,
+                                         @Field("inmueble_idinmueble") int inmueble_idinmueble,
+                                         @Field("fecha_usuario") Date fecha_usuario);
 
+    @GET("api/v1/historiales")
+    Call<List<Historial>> getHistoriales();
+
+    @GET("api/v1/historiales/{usuarios_idusuarios}")
+    Call<Historial> showMyHistorial(@Path("usuarios_idusuarios") Integer usuarios_idusuarios);
 }
 

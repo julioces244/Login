@@ -45,14 +45,12 @@ private CardView cardView;
 
             public void onClick(View v) {
                 initialize();
+
 //                Intent returnIntent = getIntent();
 //                setResult(Activity.RESULT_OK,returnIntent);
 //                finish();
 
-                ProfileFragment fragment = new ProfileFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_fragment, fragment);
-                transaction.commit();
+//
 
             }
         });
@@ -177,8 +175,12 @@ private CardView cardView;
 
         });
 
-      //  Intent start = new Intent(EditProfileActivity.this, MainActivity.class);
-      //  startActivity(start);
+        Intent start = new Intent(EditProfileActivity.this, MainActivity.class);
+        startActivity(start);
+//        ProfileFragment fragment = new ProfileFragment();
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_frame_layout, fragment);
+//                transaction.commit();
     }
 
 

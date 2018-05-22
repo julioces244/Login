@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/allcardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/foto_image2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/nombre_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foto_image2"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:text="Inmueble"/>
+
+            <TextView
+                android:id="@+id/detalles_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_text2"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="Dirección"/>
+
+            <TextView
+                android:id="@+id/precio_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detalles_text2"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Precio: S/. 200.00"/>
+
+
+            <TextView
+                android:id="@+id/tipo_costo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/precio_text2"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Semanal"/>
+
+            <TextView
+                android:id="@+id/tip_inmueble2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tipo_costo2"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Departamento"/>
+
+            <Button
+                android:id="@+id/buttoninteres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/nombre_text2"
+                android:layout_alignParentEnd="true"
+                android:text="Button" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+     <android.support.v7.widget.CardView
+         android:layout_margin="16dp"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/publicado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textStyle="bold"
+            android:text="Publicado por sohappy3"/>
+
+        <TextView
+            android:id="@+id/telefono"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="15dp"
+            android:textStyle="bold"
+            android:text="Teléfono: 908877122"/>
+
+        <TextView
+            android:id="@+id/correo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="15dp"
+            android:textStyle="bold"
+            android:text="Correo: sohappy@gmail.com"/>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/calluser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Call"/>
+
+        <Button
+            android:id="@+id/sendemailuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Send Email"/>
+
+             </LinearLayout>
+         </LinearLayout>
+
+
+     </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Valoración"/>
+
+                <RatingBar
+                    android:id="@+id/rbvalorar"
+                    android:numStars="5"
+                    android:rating="5.0"
+                    android:stepSize="1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:hint="Comentario..."
+                    android:inputType="textMultiLine"
+                    android:id="@+id/etcomentario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="5" />
+
+                <Button
+                    android:id="@+id/enviarvaloracion"
+                    android:text="Enviar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -86,12 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         // Log.e(TAG, "onError: " + response.errorBody().string());
                         throw new Exception("Error en el servicio");
+
                     }
 
                 } catch (Throwable t) {
                     try {
                         //  Log.e(TAG, "onThrowable: " + t.toString(), t);
                         Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     } catch (Throwable x) {
                     }
                 }
