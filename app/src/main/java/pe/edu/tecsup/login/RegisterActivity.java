@@ -22,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText user;
     private EditText pass;
     private EditText ema;
+    private EditText tel;
     private TextView msg;
 
 
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         user = (EditText)findViewById(R.id.userRegister);
         pass = (EditText)findViewById(R.id.passwordRegister);
         ema = (EditText)findViewById(R.id.emailRegister);
+        tel = (EditText) findViewById(R.id.telephoneRegister);
         msg = (TextView) findViewById(R.id.textView6);
     }
 
@@ -41,11 +43,17 @@ public class RegisterActivity extends AppCompatActivity {
         String username = user.getText().toString();
         String password = pass.getText().toString();
         String email = ema.getText().toString();
+        String telefono = tel.getText().toString();
+
         String hash;
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
 
             msg.setText("Complete fields");
-        }
+            Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+
+
+
 
         //SecretKey secret1 = generateKey();
         //EncUtil.encryptMsg(password, secret1);
@@ -53,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
             ApiService service = ApiServiceGenerator.createService(ApiService.class);
 
             Call<ResponseMessage> call = null;
-            call = service.createUsuario(username,password,email);
+            call = service.createUsuario(username,password,email,telefono);
 
         call.enqueue(new Callback<ResponseMessage>() {
             @Override
@@ -92,6 +100,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
+
+
+        }
+
     }
 
 

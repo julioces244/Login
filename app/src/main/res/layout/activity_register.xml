@@ -18,7 +18,7 @@
         android:layout_marginTop="71dp"
         android:textColor="@color/primary_light"
         android:textSize="20sp"
-        android:text="Register:" />
+        android:text="Registro:" />
 
 
     <EditText
@@ -29,9 +29,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="#11000000"
+        android:maxLength="10"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="12"
-        android:hint="Username" />
+        android:hint="Usuario" />
 
     <EditText
         android:id="@+id/passwordRegister"
@@ -44,7 +45,7 @@
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="12"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:inputType="textPassword" />
 
     <EditText
@@ -57,7 +58,21 @@
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_email"
         android:ems="12"
-        android:hint="Email (Optional)" />
+        android:hint="Correo (Obligatorio)" />
+
+    <EditText
+        android:id="@+id/telephoneRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/passwordRegister"
+        android:layout_below="@+id/emailRegister"
+        android:layout_marginTop="19dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/ic_icon_telephone3"
+        android:ems="12"
+        android:maxLength="9"
+        android:inputType="phone"
+        android:hint="Teléfono (Obligatorio)" />
 
 
 
@@ -66,7 +81,7 @@
         android:id="@+id/cardView"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/emailRegister"
+        android:layout_below="@+id/telephoneRegister"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:onClick="UserRegister"
@@ -83,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Register"
+                android:text="Crear cuenta"
                 android:textColor="#fff"
                 android:textSize="18sp" />
 
@@ -101,7 +116,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:textColor="@color/primary_light"
-        android:text="Not register yet" />
+        android:text="No registrado aún" />
 
     <TextView
         android:id="@+id/textView7"
@@ -111,7 +126,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:onClick="viewLogin"
-        android:text="Login me"
+        android:text="Loguearme"
         android:textColor="@color/colorAccent" />
 
 </RelativeLayout>

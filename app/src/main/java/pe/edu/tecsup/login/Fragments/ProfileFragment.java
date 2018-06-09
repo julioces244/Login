@@ -56,11 +56,11 @@ public class ProfileFragment extends Fragment {
             telefono = (TextView) view.findViewById(R.id.tvNumber4);
             genero = (TextView) view.findViewById(R.id.tvNumber5);
             descripcion = (TextView) view.findViewById(R.id.tvNumber6);
-            tipodocumento = (TextView) view.findViewById(R.id.tvNumber7);
-            numdocumento = (TextView) view.findViewById(R.id.tvNumber8);
+          //  tipodocumento = (TextView) view.findViewById(R.id.tvNumber7);
+          //  numdocumento = (TextView) view.findViewById(R.id.tvNumber8);
         initialize();
 
-        Toast.makeText(getActivity(), Integer.toString(identificador), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), Integer.toString(identificador), Toast.LENGTH_SHORT).show();
 
         Button button = (Button) view.findViewById(R.id.buttonedit);
         button.setOnClickListener(new View.OnClickListener()
@@ -152,6 +152,8 @@ public class ProfileFragment extends Fragment {
                         telefono.setText(usuario.getTelefono());
                         genero.setText(usuario.getGenero());
                         descripcion.setText(usuario.getDescripcion());
+
+
   //                      tipodocumento.setText(usuario.getTipo_documento());
 //                        numdocumento.setText(usuario.getNum_documento());
 

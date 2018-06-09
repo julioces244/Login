@@ -1,9 +1,6 @@
 package pe.edu.tecsup.login;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -14,8 +11,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import pe.edu.tecsup.login.Class.Historial;
 import pe.edu.tecsup.login.Class.Usuario;
-import pe.edu.tecsup.login.Fragments.ProfileFragment;
 import pe.edu.tecsup.login.Interface.ApiService;
 import pe.edu.tecsup.login.Interface.ApiServiceGenerator;
 import retrofit2.Call;
@@ -37,25 +34,8 @@ private CardView cardView;
         setContentView(R.layout.activity_edit_profile);
         cardView = (CardView) findViewById(R.id.cardViewSave);
 
-
          //button = (Button) findViewById(R.id.button2);
         initialize2();
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                initialize();
-//                Intent returnIntent = getIntent();
-//                setResult(Activity.RESULT_OK,returnIntent);
-//                finish();
-
-                ProfileFragment fragment = new ProfileFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_fragment, fragment);
-                transaction.commit();
-
-            }
-        });
 
         nom = (EditText) findViewById(R.id.nameProfile);
         ape = (EditText) findViewById(R.id.lastnameProfile);
@@ -84,8 +64,13 @@ private CardView cardView;
                     if (response.isSuccessful()) {
 
                         Usuario usuario = response.body();
-                        Log.d(TAG, "usuario: " + usuario);
+                        Log.d(TAG, "usuario: " +usuario);
 
+                        usuario.getHistoriales();
+                        for(Historial historial: usuario.getHistoriales()){
+                            Log.d(TAG, "USUARIOSSSSSSSSSS: " +historial.getDescripcion());
+
+                        }
                         //String url = ApiService.API_BASE_URL + "/images/" + producto.getImagen();
                         //Picasso.with(DetailActivity.this).load(url).into(fotoImage);
 
@@ -94,62 +79,56 @@ private CardView cardView;
                         corr.setText(usuario.getCorreo());
                         telf.setText(usuario.getTelefono());
                         desc.setText(usuario.getDescripcion());
-
-                    } else {
-                        Log.e(TAG, "onError: " + response.errorBody().string());
-                        throw new Exception("Error en el servicio");
-                    }
-
-                } catch (Throwable t) {
-                    try {
-                        Log.e(TAG, "onThrowable: " + t.toString(), t);
-                        Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }catch (Throwable x){}
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.toString());
-                Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
-        });
-    }
+                        if(usuario.getGenero().equals("F")){
+                            fem.setChecked(true);
+                            mal.setChecked(false);
+                        }else if(usuario.getGenero().equals("M")){
+                            mal.setChecked(true);
+                            fem.setChecked(false);
+                        }else{
+                            mal.setChecked(false);
+                            fem.setChecked(false);
+                        }
 
 
-    private void initialize() {
+                        cardView.setOnClickListener(new View.OnClickListener() {
 
-        final String nombre = nom.getText().toString();
-        String apellido = ape.getText().toString();
-        String correo = corr.getText().toString();
-        String telefono = telf.getText().toString();
-        String description = desc.getText().toString();
-        String gen="";
-        if (fem.isChecked()==true) {
-            gen = "Female";
-        } else
-        if (mal.isChecked()==true) {
-            gen = "Male";
-        }
+                            public void onClick(View v) {
+                                //initialize();
 
-
-        ApiService service = ApiServiceGenerator.createService(ApiService.class);
-
-        Call<Usuario> call = service.updateUsuario(identificador,nombre,apellido,correo,telefono,"Nothing",description,gen);
-
-        call.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                try {
-
-                    int statusCode = response.code();
+//                Intent returnIntent = getIntent();
+//                setResult(Activity.RESULT_OK,returnIntent);
+//                finish();
+                                String nombre = nom.getText().toString();
+                                String apellido = ape.getText().toString();
+                                String correo = corr.getText().toString();
+                                String telefono = telf.getText().toString();
+                                String description = desc.getText().toString();
+                                String gen="";
+                                if (fem.isChecked()==true) {
+                                    gen = "F";
+                                } else
+                                if (mal.isChecked()==true) {
+                                    gen = "M";
+                                }
 
 
-                    if (response.isSuccessful()) {
+                                ApiService service = ApiServiceGenerator.createService(ApiService.class);
 
-                        Usuario usuario = response.body();
-                        Toast.makeText(EditProfileActivity.this, "Completed!", Toast.LENGTH_SHORT).show();
+                                Call<Usuario> call = service.updateUsuario(identificador,nombre,apellido,correo,telefono,"Nothing",description,gen,1);
+
+                                call.enqueue(new Callback<Usuario>() {
+                                    @Override
+                                    public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                                        try {
+
+                                            int statusCode = response.code();
+
+
+                                            if (response.isSuccessful()) {
+
+                                                Usuario usuario = response.body();
+                                                Toast.makeText(EditProfileActivity.this, "Completed!", Toast.LENGTH_SHORT).show();
 
 //                        String url = ApiService.API_BASE_URL + "/images/" + producto.getImagen();
 //                        Picasso.with(DetailActivity.this).load(url).into(fotoImage);
@@ -159,26 +138,64 @@ private CardView cardView;
 //                        precioText.setText("Precio: S/. " + producto.getPrecio());
 
 
+                                            } else {
+                                                throw new Exception("Error en el servicio");
+                                            }
+
+                                        } catch (Throwable t) {
+                                            try {
+
+                                            }catch (Throwable x){}
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Usuario> call, Throwable t) {
+
+                                    }
+
+                                });
+//
+                                Intent start = new Intent(EditProfileActivity.this, MainActivity.class);
+                                startActivity(start);
+                            }
+                        });
+
+                        //Toast.makeText(EditProfileActivity.this, ""+usuario.getHistoriales(), Toast.LENGTH_SHORT).show();
+
                     } else {
+                        Log.e(TAG, "onError: " + response.errorBody().string());
                         throw new Exception("Error en el servicio");
                     }
 
                 } catch (Throwable t) {
                     try {
-
+                        Log.e(TAG, "onThrowable: " + t.toString(), t);
+                      //  Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }catch (Throwable x){}
                 }
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                Log.e(TAG, "onFailure: " + t.toString());
+                //Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         });
+    }
 
-      //  Intent start = new Intent(EditProfileActivity.this, MainActivity.class);
-      //  startActivity(start);
+
+    private void initialize() {
+
+
+
+        Intent start = new Intent(EditProfileActivity.this, MainActivity.class);
+        startActivity(start);
+//        ProfileFragment fragment = new ProfileFragment();
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_frame_layout, fragment);
+//                transaction.commit();
     }
 
 

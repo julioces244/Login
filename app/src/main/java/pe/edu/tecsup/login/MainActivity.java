@@ -1,6 +1,7 @@
 package pe.edu.tecsup.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import pe.edu.tecsup.login.Fragments.HomeFragment;
 import pe.edu.tecsup.login.Fragments.ImmovablesAllFragment;
 import pe.edu.tecsup.login.Fragments.ProfileFragment;
 import pe.edu.tecsup.login.Fragments.MyImmovablesFragment;
+import pe.edu.tecsup.login.LoginActivity;
 import pe.edu.tecsup.login.Interface.ApiService;
 import pe.edu.tecsup.login.Interface.ApiServiceGenerator;
 import retrofit2.Call;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ResideMenuItem itemCalendar;
     private ResideMenuItem itemSettings;
     private ResideMenuItem itemAllinmuebles;
+    private ResideMenuItem itemLogout;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static String usernamen;
     private int id;
@@ -75,20 +78,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resideMenu.setScaleValue(0.6f);
 
         // create menu items;
-        itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Home");
-        itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "Profile");
+        itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Principal");
+        itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "Perfil");
         itemCalendar = new ResideMenuItem(this, R.drawable.icon_calendar, "Historial");
-        itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Inmuebles");
-        itemAllinmuebles = new ResideMenuItem(this, R.drawable.icn_5, "Renta");
+        itemSettings = new ResideMenuItem(this, R.drawable.icon_settings, "Inmueble");
+        itemAllinmuebles = new ResideMenuItem(this, R.drawable.icn_5, "Adquirir");
+        itemLogout = new ResideMenuItem(this, R.drawable.ic_iconfinder_icon,"Salir");
 
         itemHome.setOnClickListener(this);
         itemProfile.setOnClickListener(this);
+        itemLogout.setOnClickListener(this);
         itemCalendar.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
         itemAllinmuebles.setOnClickListener(this);
 
         resideMenu.addMenuItem(itemHome, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemProfile, ResideMenu.DIRECTION_LEFT);
+        resideMenu.addMenuItem(itemLogout,ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(itemCalendar, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemSettings, ResideMenu.DIRECTION_RIGHT);
         resideMenu.addMenuItem(itemAllinmuebles, ResideMenu.DIRECTION_RIGHT);
@@ -127,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             changeFragment(new MyImmovablesFragment());
         }else if(view== itemAllinmuebles){
             changeFragment(new ImmovablesAllFragment());
+        }else if(view== itemLogout){
+            Intent salir = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(salir);
         }
 
         resideMenu.closeMenu();
@@ -135,12 +144,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
         @Override
         public void openMenu() {
-            Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void closeMenu() {
-            Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -1,9 +1,11 @@
 package pe.edu.tecsup.login.Interface;
 
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import pe.edu.tecsup.login.Class.Historial;
 import pe.edu.tecsup.login.Class.Inmueble;
 import pe.edu.tecsup.login.Class.Usuario;
 import pe.edu.tecsup.login.Coordenada;
@@ -39,14 +41,16 @@ public interface ApiService {
     @POST("/api/v1/usuarios")
     Call<ResponseMessage> createUsuario(@Field("username") String username,
                                          @Field("password") String password,
-                                         @Field("correo") String correo);
+                                         @Field("correo") String correo,
+                                         @Field("telefono") String telefono);
 
 
     @FormUrlEncoded
     @POST("/api/v1/rankings")
-    Call<ResponseMessage> createRanking(@Field("puntaje") String puntaje,
+    Call<ResponseMessage> createRanking(@Field("puntaje") Integer puntaje,
                                         @Field("comentario") String comentario,
-                                        @Field("usuarios_idusuarios") Integer usuarios_idusuarios);
+                                        @Field("usuarios_idusuarios") Integer usuarios_idusuarios,
+                                        @Field("idinmueble") Integer idinmueble);
 
     @GET("api/v1/coordenadas")
     Call<List<Coordenada>> getCoordenadas();
@@ -60,7 +64,14 @@ public interface ApiService {
                                         @Field("telefono") String telefono,
                                         @Field("imagen") String imagen,
                                         @Field("descripcion") String descripcion,
-                                        @Field("genero") String genero);
+                                        @Field("genero") String genero,
+                                        @Field("estado") Integer estado);
+
+    @FormUrlEncoded
+    @PUT("api/v1/usuarios/{idusuario}")
+    Call<Usuario> updateUsuarioEstado(@Path("idusuario") Integer idusuario,
+                                @Field("estado") Integer estado);
+
 
     @GET("api/v1/usuarios/{idusuario}")
     Call<Usuario> showUsuario(@Path("idusuario") Integer idusuario);
@@ -102,6 +113,18 @@ public interface ApiService {
 
     @GET("api/v1/misinmuebles/{usuarios_idusuarios}")
     Call<List<Inmueble>> showMyInmueble(@Path("usuarios_idusuarios") Integer usuarios_idusuarios);
+
+    @FormUrlEncoded
+    @POST("/api/v1/historiales")
+    Call<ResponseMessage> createHistorial(@Field("usuarios_idusuarios") int usuarios_idusuarios,
+                                         @Field("inmueble_idinmueble") int inmueble_idinmueble,
+                                         @Field("fecha_usuario") Date fecha_usuario);
+
+    @GET("api/v1/historiales")
+    Call<List<Historial>> getHistoriales();
+
+    @GET("api/v1/historiales/{usuarios_idusuarios}")
+    Call<Historial> showMyHistorial(@Path("usuarios_idusuarios") Integer usuarios_idusuarios);
 
 
 }
